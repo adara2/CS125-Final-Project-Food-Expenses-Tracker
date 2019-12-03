@@ -9,7 +9,8 @@ import android.content.Intent;
 
 public class   MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button customizeBudget;
+    private Button food;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,14 +18,27 @@ public class   MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        button = (Button) findViewById(R.id.customizeBudget);
+        customizeBudget = (Button) findViewById(R.id.customizeBudget);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        food = (Button) findViewById(R.id.food);
+
+
+
+
+        customizeBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openBudgetCustomization();
             }
         });
+
+        food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRestaurant();
+            }
+        });
+
 
     }
 
@@ -33,4 +47,11 @@ public class   MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void openRestaurant() {
+        Intent intent = new Intent(this, restaurant.class);
+        startActivity(intent);
+    }
+
+
 }
