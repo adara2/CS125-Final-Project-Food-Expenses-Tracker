@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CS125 Final Project Food Expenses Tracker</string>
+
+    <string-array name = "timeframe">
+
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+
+    </string-array>
+
 </resources>
