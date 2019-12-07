@@ -14,16 +14,36 @@ public class   MainActivity extends AppCompatActivity {
 
     private Button customizeBudget;
     private Button food;
+    private Button addNewExpense;
+    private Button viewExpenses;
+    private Button submitNewExpense;
+    private Button cancelNewExpense;
+
+    private TextView currentDailyBudget;
+    private TextView currentWeeklyBudget;
+    private TextView currentMonthlyBudget;
+    private TextView currentYearlyBudget;
+    private TextView foodName;
+    private TextView foodDesc;
+    private TextView foodPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView currentDailyBudget = findViewById(R.id.currentDailyBudget);
-        TextView currentWeeklyBudget = findViewById(R.id.currentWeeklyBudget);
-        TextView currentMonthlyBudget = findViewById(R.id.currentMonthlyBudget);
-        TextView currentYearlyBudget = findViewById(R.id.currentYearlyBudget);
+        currentDailyBudget = findViewById(R.id.currentDailyBudget);
+        currentWeeklyBudget = findViewById(R.id.currentWeeklyBudget);
+        currentMonthlyBudget = findViewById(R.id.currentMonthlyBudget);
+        currentYearlyBudget = findViewById(R.id.currentYearlyBudget);
+        foodName = findViewById(R.id.foodName);
+        foodDesc = findViewById(R.id.foodDesc);
+        foodPrice = findViewById(R.id.foodPrice);
+
+        foodName.setVisibility(View.GONE);
+        foodDesc.setVisibility(View.GONE);
+        foodPrice.setVisibility(View.GONE);
+
 
         currentDailyBudget.setText("Remaining Daily Budget: $" + budget_customization.getDailyBudget());
         currentWeeklyBudget.setText("Remaining Weekly Budget: $" + budget_customization.getWeeklyBudget());
@@ -31,18 +51,7 @@ public class   MainActivity extends AppCompatActivity {
         currentYearlyBudget.setText("Remaining Yearly Budget: $" + budget_customization.getYearlyBudget());
 
 
-
-
-
-
-
         customizeBudget = (Button) findViewById(R.id.customizeBudget);
-
-        food = (Button) findViewById(R.id.food);
-
-
-
-
         customizeBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,12 +59,89 @@ public class   MainActivity extends AppCompatActivity {
             }
         });
 
+        food = (Button) findViewById(R.id.food);
         food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openRestaurant();
             }
         });
+
+        submitNewExpense = (Button) findViewById(R.id.submitExpense);
+        submitNewExpense.setVisibility(View.GONE);
+        submitNewExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewExpenses.setVisibility(View.VISIBLE);
+                customizeBudget.setVisibility(View.VISIBLE);
+                food.setVisibility(View.VISIBLE);
+                viewExpenses.setVisibility(View.VISIBLE);
+                addNewExpense.setVisibility(View.VISIBLE);
+                currentDailyBudget.setVisibility(View.VISIBLE);
+                currentWeeklyBudget.setVisibility(View.VISIBLE);
+                currentMonthlyBudget.setVisibility(View.VISIBLE);
+                currentYearlyBudget.setVisibility(View.VISIBLE);
+                submitNewExpense.setVisibility(View.GONE);
+                cancelNewExpense.setVisibility(View.GONE);
+                foodName.setVisibility(View.GONE);
+                foodDesc.setVisibility(View.GONE);
+                foodPrice.setVisibility(View.GONE);
+
+                String name = foodName.getText().toString();
+                String desc = foodDesc.getText().toString();
+                int price = Integer.parseInt(foodPrice.getText().toString());
+
+                // food_expenses_list.addNewExpense(name, desc, price);
+
+            }
+        });
+
+        cancelNewExpense = (Button) findViewById(R.id.cancelExpense);
+        cancelNewExpense.setVisibility(View.GONE);
+        cancelNewExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewExpenses.setVisibility(View.VISIBLE);
+                customizeBudget.setVisibility(View.VISIBLE);
+                food.setVisibility(View.VISIBLE);
+                viewExpenses.setVisibility(View.VISIBLE);
+                addNewExpense.setVisibility(View.VISIBLE);
+                currentDailyBudget.setVisibility(View.VISIBLE);
+                currentWeeklyBudget.setVisibility(View.VISIBLE);
+                currentMonthlyBudget.setVisibility(View.VISIBLE);
+                currentYearlyBudget.setVisibility(View.VISIBLE);
+                submitNewExpense.setVisibility(View.GONE);
+                cancelNewExpense.setVisibility(View.GONE);
+                foodName.setVisibility(View.GONE);
+                foodDesc.setVisibility(View.GONE);
+                foodPrice.setVisibility(View.GONE);
+            }
+        });
+
+        addNewExpense = (Button) findViewById(R.id.newExpense);
+        addNewExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewExpenses.setVisibility(View.GONE);
+                customizeBudget.setVisibility(View.GONE);
+                food.setVisibility(View.GONE);
+                viewExpenses.setVisibility(View.GONE);
+                addNewExpense.setVisibility(View.GONE);
+                currentDailyBudget.setVisibility(View.GONE);
+                currentWeeklyBudget.setVisibility(View.GONE);
+                currentMonthlyBudget.setVisibility(View.GONE);
+                currentYearlyBudget.setVisibility(View.GONE);
+                submitNewExpense.setVisibility(View.VISIBLE);
+                cancelNewExpense.setVisibility(View.VISIBLE);
+                foodName.setVisibility(View.VISIBLE);
+                foodDesc.setVisibility(View.VISIBLE);
+                foodPrice.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        viewExpenses = (Button) findViewById(R.id.expensesList);
+
 
 
     }
