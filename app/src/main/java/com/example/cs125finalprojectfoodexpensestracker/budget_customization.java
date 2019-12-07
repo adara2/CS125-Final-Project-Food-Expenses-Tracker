@@ -17,11 +17,11 @@ import android.widget.TextView;
 public class budget_customization extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button budgetCustomizationHome;
-    private int budget;
-    private int dailyBudget;
-    private int weeklyBudget;
-    private int monthlyBudget;
-    private int yearlyBudget;
+    private static int budget;
+    private static int dailyBudget;
+    private static int weeklyBudget;
+    private static int monthlyBudget;
+    private static int yearlyBudget;
     private String timeframeSelected;
 
     @Override
@@ -104,6 +104,23 @@ public class budget_customization extends AppCompatActivity implements AdapterVi
 
 
 
+    }
+
+
+    public static int getBudget() {
+        return budget;
+    }
+    public static int getDailyBudget() {
+        return dailyBudget;
+    }
+    public static int getWeeklyBudget() {
+        return weeklyBudget;
+    }
+    public static int getMonthlyBudget() {
+        return monthlyBudget;
+    }
+    public static int getYearlyBudget() {
+        return yearlyBudget;
     }
 
 
