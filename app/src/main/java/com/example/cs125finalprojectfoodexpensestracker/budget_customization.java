@@ -3,6 +3,7 @@ package com.example.cs125finalprojectfoodexpensestracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ public class budget_customization extends AppCompatActivity implements AdapterVi
     private int weeklyBudget;
     private int monthlyBudget;
     private int yearlyBudget;
+    private String timeframeSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,55 @@ public class budget_customization extends AppCompatActivity implements AdapterVi
         enterBudget.setVisibility(View.GONE);
 
 
+        Button save = findViewById(R.id.saveButton);
+
+        save.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                EditText enteredBudget = findViewById(R.id.enterBudget);
+                budget = Integer.parseInt(enteredBudget.getText().toString());
+
+                if (timeframeSelected.equals("Day")) {
+
+                    dailyBudget = budget;
+                    weeklyBudget = budget * 7;
+                    monthlyBudget = budget * 30;
+                    yearlyBudget = budget * 365;
+
+                    String a = Integer.toString(monthlyBudget);
+
+                    Log.d("dd", a);
+
+                }
+                if (timeframeSelected.equals("Week")) {
+
+                    dailyBudget = budget / 7;
+                    weeklyBudget = budget;
+                    monthlyBudget = budget * 4;
+                    yearlyBudget = budget * 52;
+
+                }
+                if (timeframeSelected.equals("Month")) {
+
+                    dailyBudget = budget / 30;
+                    weeklyBudget = budget / 4;
+                    monthlyBudget = budget;
+                    yearlyBudget = budget * 12;
+
+                }
+                if (timeframeSelected.equals("Year")) {
+
+                    dailyBudget = budget / 365;
+                    weeklyBudget = budget / 52;
+                    monthlyBudget = budget / 12;
+                    yearlyBudget = budget;
+
+                }
+            }
+        });
 
 
 
@@ -62,20 +113,12 @@ public class budget_customization extends AppCompatActivity implements AdapterVi
         startActivity(intent);
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         TextView enterBudget = findViewById(R.id.enterBudget);
         enterBudget.setVisibility(View.VISIBLE);
 
-        EditText enteredBudget = findViewById(R.id.enterBudget);
-
-
-
-        if (enteredBudget.getText().toString().isEmpty()) {
-            return;
-        }
-
-        budget = Integer.parseInt(enteredBudget.getText().toString());
 
 
 
@@ -83,48 +126,21 @@ public class budget_customization extends AppCompatActivity implements AdapterVi
 
 
         if (timeframe.getItemAtPosition(i).equals(timeframe.getItemAtPosition(0))) {
-
-            dailyBudget = budget;
-            weeklyBudget = budget * 7;
-            monthlyBudget = budget * 30;
-            yearlyBudget = budget * 365;
-
+            timeframeSelected = "Day";
         }
         if (timeframe.getItemAtPosition(i).equals(timeframe.getItemAtPosition(1))) {
-
-
-            dailyBudget = budget / 7;
-            weeklyBudget = budget;
-            monthlyBudget = budget * 4;
-            yearlyBudget = budget * 52;
-
+            timeframeSelected = "Week";
         }
         if (timeframe.getItemAtPosition(i).equals(timeframe.getItemAtPosition(2))) {
-
-
-
-            dailyBudget = budget / 30;
-            weeklyBudget = budget / 4;
-            monthlyBudget = budget;
-            yearlyBudget = budget * 12;
-
-        }
+            timeframeSelected = "Month";        }
         if (timeframe.getItemAtPosition(i).equals(timeframe.getItemAtPosition(3))) {
-
-            dailyBudget = budget / 365;
-            weeklyBudget = budget / 52;
-            monthlyBudget = budget / 12;
-            yearlyBudget = budget;
-
+            timeframeSelected = "Year";
         }
-
-
-
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
 
     }
 }
