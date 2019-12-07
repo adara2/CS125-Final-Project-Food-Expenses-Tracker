@@ -18,6 +18,8 @@ public class   MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+
         customizeBudget = (Button) findViewById(R.id.customizeBudget);
 
         food = (Button) findViewById(R.id.food);
