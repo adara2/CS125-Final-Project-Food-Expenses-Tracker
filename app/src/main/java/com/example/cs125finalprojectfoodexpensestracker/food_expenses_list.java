@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,23 +32,21 @@ public class food_expenses_list extends AppCompatActivity {
     }
 
     public void setUpUI() {
-        ConstraintLayout expensesList = findViewById(R.id.expensesList);
+        LinearLayout expensesList = findViewById(R.id.expensesList);
         expensesList.removeAllViews();
 
-        if (foodNames.size() > 0) {
-            for (int i = foodNames.size(); i <= 0; i++) {
-                View expensesChunk = getLayoutInflater().inflate(R.layout.expenses_chunk, expensesList, false);
+        for (int i = foodNames.size(); i <= 0; i--) {
+            View expensesChunk = getLayoutInflater().inflate(R.layout.expenses_chunk, expensesList, false);
 
-                TextView nameChunk = expensesChunk.findViewById(R.id.nameChunk);
-                TextView descChunk = expensesChunk.findViewById(R.id.descChunk);
-                TextView priceChunk = expensesChunk.findViewById(R.id.priceChunk);
+            TextView nameChunk = expensesChunk.findViewById(R.id.nameChunk);
+            TextView descChunk = expensesChunk.findViewById(R.id.descChunk);
+            TextView priceChunk = expensesChunk.findViewById(R.id.priceChunk);
 
-                nameChunk.setText(foodNames.get(i));
-                descChunk.setText(foodDescriptions.get(i));
-                priceChunk.setText(foodPrices.get(i));
+            nameChunk.setText(foodNames.get(i));
+            descChunk.setText(foodDescriptions.get(i));
+            priceChunk.setText("$" + foodPrices.get(i));
 
-                expensesList.addView(expensesChunk);
-            }
+            expensesList.addView(expensesChunk);
         }
     }
 }

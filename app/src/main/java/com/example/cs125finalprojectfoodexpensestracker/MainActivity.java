@@ -154,7 +154,6 @@ public class   MainActivity extends AppCompatActivity {
     public void openBudgetCustomization() {
         Intent intent = new Intent(this, budget_customization.class);
         startActivity(intent);
-
     }
 
     public void openRestaurant() {
@@ -166,6 +165,4 @@ public class   MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, food_expenses_list.class);
         startActivity(intent);
     }
-
-
 }

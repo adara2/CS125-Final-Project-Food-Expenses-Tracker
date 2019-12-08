@@ -29,17 +29,13 @@ public class budget_customization extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_customization);
 
-
-        budgetCustomizationHome = (Button) findViewById(R.id.budgetCustomizationHome);
-
+        budgetCustomizationHome = findViewById(R.id.budgetCustomizationHome);
         budgetCustomizationHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMainActivity();
             }
         });
-
-
 
         Spinner timeframe = findViewById(R.id.timeframeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.timeframe, android.R.layout.simple_spinner_item);
