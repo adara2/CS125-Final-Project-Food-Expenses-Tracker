@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CS125 Final Project Food Expenses Tracker</string>
+    <string name="app_name">Food Expenses Tracker</string>
 
     <string-array name="timeframe">
 

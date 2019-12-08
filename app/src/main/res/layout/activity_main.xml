@@ -119,7 +119,7 @@
         app:layout_constraintVertical_bias="0.565" />
 
     <EditText
-        android:id="@+id/foodName"
+        android:id="@+id/nameChunk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

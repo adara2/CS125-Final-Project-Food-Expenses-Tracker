@@ -3,12 +3,11 @@ package com.example.cs125finalprojectfoodexpensestracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class   MainActivity extends AppCompatActivity {
 
@@ -36,7 +35,7 @@ public class   MainActivity extends AppCompatActivity {
         currentWeeklyBudget = findViewById(R.id.currentWeeklyBudget);
         currentMonthlyBudget = findViewById(R.id.currentMonthlyBudget);
         currentYearlyBudget = findViewById(R.id.currentYearlyBudget);
-        foodName = findViewById(R.id.foodName);
+        foodName = findViewById(R.id.nameChunk);
         foodDesc = findViewById(R.id.foodDesc);
         foodPrice = findViewById(R.id.foodPrice);
 
@@ -51,7 +50,7 @@ public class   MainActivity extends AppCompatActivity {
         currentYearlyBudget.setText("Remaining Yearly Budget: $" + budget_customization.getYearlyBudget());
 
 
-        customizeBudget = (Button) findViewById(R.id.customizeBudget);
+        customizeBudget = findViewById(R.id.customizeBudget);
         customizeBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +58,7 @@ public class   MainActivity extends AppCompatActivity {
             }
         });
 
-        food = (Button) findViewById(R.id.food);
+        food = findViewById(R.id.food);
         food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +66,7 @@ public class   MainActivity extends AppCompatActivity {
             }
         });
 
-        submitNewExpense = (Button) findViewById(R.id.submitExpense);
+        submitNewExpense = findViewById(R.id.submitExpense);
         submitNewExpense.setVisibility(View.GONE);
         submitNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +90,16 @@ public class   MainActivity extends AppCompatActivity {
                 String desc = foodDesc.getText().toString();
                 int price = Integer.parseInt(foodPrice.getText().toString());
 
-                // food_expenses_list.addNewExpense(name, desc, price);
+                Log.d("name", name);
+                Log.d("desc", desc);
+                Log.d("price", foodPrice.getText().toString());
+
+                food_expenses_list.addNewExpense(name, desc, price);
 
             }
         });
 
-        cancelNewExpense = (Button) findViewById(R.id.cancelExpense);
+        cancelNewExpense = findViewById(R.id.cancelExpense);
         cancelNewExpense.setVisibility(View.GONE);
         cancelNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +121,7 @@ public class   MainActivity extends AppCompatActivity {
             }
         });
 
-        addNewExpense = (Button) findViewById(R.id.newExpense);
+        addNewExpense = findViewById(R.id.newExpense);
         addNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,14 +139,16 @@ public class   MainActivity extends AppCompatActivity {
                 foodName.setVisibility(View.VISIBLE);
                 foodDesc.setVisibility(View.VISIBLE);
                 foodPrice.setVisibility(View.VISIBLE);
-
             }
         });
 
-        viewExpenses = (Button) findViewById(R.id.expensesList);
-
-
-
+        viewExpenses = findViewById(R.id.expensesList);
+        viewExpenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openExpensesList();
+            }
+        });
     }
 
     public void openBudgetCustomization() {
@@ -154,6 +159,11 @@ public class   MainActivity extends AppCompatActivity {
 
     public void openRestaurant() {
         Intent intent = new Intent(this, restaurant.class);
+        startActivity(intent);
+    }
+
+    public void openExpensesList() {
+        Intent intent = new Intent(this, food_expenses_list.class);
         startActivity(intent);
     }
 
