@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +21,8 @@ public class food_expenses_list extends AppCompatActivity {
     private static ArrayList<String> foodNames = new ArrayList<>();
     private static ArrayList<String> foodDescriptions = new ArrayList<>();
     private static ArrayList<Integer> foodPrices = new ArrayList<>();
-    private static int arrayPosition = -1;
+    private static int arrayPosition = 0;
+    private static int test;
 
     static ListView listView;
 
@@ -38,7 +40,8 @@ public class food_expenses_list extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                arrayPosition++;
+                test = position;
+
                 openFoodPriceAndDescription();
             }
 
@@ -54,7 +57,11 @@ public class food_expenses_list extends AppCompatActivity {
     }
 
     public static int getArrayPosition() {
-        return arrayPosition;
+        return getTest();
+    }
+
+    public static int getTest() {
+        return test;
     }
 
     public static int getFoodPrice(int position) {
@@ -69,6 +76,7 @@ public class food_expenses_list extends AppCompatActivity {
     public void openFoodPriceAndDescription() {
         Intent intent = new Intent(this, FoodPriceAndDescription.class);
         startActivity(intent);
+
     }
 
 
