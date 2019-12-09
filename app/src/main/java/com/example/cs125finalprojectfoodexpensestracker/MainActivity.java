@@ -28,6 +28,10 @@ public class   MainActivity extends AppCompatActivity {
     private TextView foodName;
     private TextView foodDesc;
     private TextView foodPrice;
+    private TextView textbox1;
+    private TextView textbox2;
+    private TextView textbox3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +46,16 @@ public class   MainActivity extends AppCompatActivity {
         foodDesc = findViewById(R.id.foodDesc);
         foodPrice = findViewById(R.id.foodPrice);
 
+        textbox1 = findViewById(R.id.textbox1);
+        textbox2 = findViewById(R.id.textbox2);
+        textbox3 = findViewById(R.id.textbox3);
+
         foodName.setVisibility(View.GONE);
         foodDesc.setVisibility(View.GONE);
         foodPrice.setVisibility(View.GONE);
+        textbox1.setVisibility(View.GONE);
+        textbox2.setVisibility(View.GONE);
+        textbox3.setVisibility(View.GONE);
 
 
         currentDailyBudget.setText("Remaining Daily Budget: $" + (budget_customization.getDailyBudget()));
@@ -75,7 +86,9 @@ public class   MainActivity extends AppCompatActivity {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-
+                textbox1.setVisibility(View.GONE);
+                textbox2.setVisibility(View.GONE);
+                textbox3.setVisibility(View.GONE);
                 viewExpenses.setVisibility(View.VISIBLE);
                 customizeBudget.setVisibility(View.VISIBLE);
                 food.setVisibility(View.VISIBLE);
@@ -90,10 +103,12 @@ public class   MainActivity extends AppCompatActivity {
                 foodName.setVisibility(View.GONE);
                 foodDesc.setVisibility(View.GONE);
                 foodPrice.setVisibility(View.GONE);
-
                 String name = foodName.getText().toString();
                 String desc = foodDesc.getText().toString();
                 int price = Integer.parseInt(foodPrice.getText().toString());
+
+
+
                 currentDailyBudget.setText("Remaining Daily Budget: $" + (budget_customization.getDailyBudget() - price));
                 currentWeeklyBudget.setText("Remaining Weekly Budget: $" + (budget_customization.getWeeklyBudget() - price));
                 currentMonthlyBudget.setText("Remaining Monthly Budget: $" + (budget_customization.getMonthlyBudget() - price));
@@ -114,6 +129,9 @@ public class   MainActivity extends AppCompatActivity {
         cancelNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textbox1.setVisibility(View.GONE);
+                textbox2.setVisibility(View.GONE);
+                textbox3.setVisibility(View.GONE);
                 viewExpenses.setVisibility(View.VISIBLE);
                 customizeBudget.setVisibility(View.VISIBLE);
                 food.setVisibility(View.VISIBLE);
@@ -135,6 +153,9 @@ public class   MainActivity extends AppCompatActivity {
         addNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textbox1.setVisibility(View.VISIBLE);
+                textbox2.setVisibility(View.VISIBLE);
+                textbox3.setVisibility(View.VISIBLE);
                 viewExpenses.setVisibility(View.GONE);
                 customizeBudget.setVisibility(View.GONE);
                 food.setVisibility(View.GONE);
