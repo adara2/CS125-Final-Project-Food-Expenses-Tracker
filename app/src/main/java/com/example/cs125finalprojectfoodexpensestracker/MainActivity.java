@@ -2,6 +2,7 @@ package com.example.cs125finalprojectfoodexpensestracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,12 +10,14 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class   MainActivity extends AppCompatActivity {
 
-    private Button customizeBudget;
-    private Button food;
-    private Button addNewExpense;
-    private Button viewExpenses;
+    private FloatingActionButton customizeBudget;
+    private FloatingActionButton food;
+    private FloatingActionButton addNewExpense;
+    private FloatingActionButton viewExpenses;
     private Button submitNewExpense;
     private Button cancelNewExpense;
 
@@ -69,6 +72,7 @@ public class   MainActivity extends AppCompatActivity {
         submitNewExpense = findViewById(R.id.submitExpense);
         submitNewExpense.setVisibility(View.GONE);
         submitNewExpense.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
 
