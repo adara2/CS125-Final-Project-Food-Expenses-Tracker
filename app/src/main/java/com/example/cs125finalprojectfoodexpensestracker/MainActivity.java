@@ -9,8 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class   MainActivity extends AppCompatActivity {
 
@@ -31,12 +39,43 @@ public class   MainActivity extends AppCompatActivity {
     private TextView textbox1;
     private TextView textbox2;
     private TextView textbox3;
+    private BarChart barchart;
+    private TextView remainingBudget;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        remainingBudget = findViewById(R.id.remainingBudget);
+        barchart = (BarChart) findViewById(R.id.barchart);
+        barchart.setDrawBarShadow(false);
+        barchart.setDrawValueAboveBar(true);
+        barchart.setPinchZoom(false);
+        barchart.setDrawGridBackground(false);
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(1, budget_customization.getDailyBudget()));
+        barEntries.add(new BarEntry(2, budget_customization.getWeeklyBudget()));
+        barEntries.add(new BarEntry(3, budget_customization.getMonthlyBudget()));
+        barEntries.add(new BarEntry(4, budget_customization.getYearlyBudget()));
+
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Day/Week/Month/Year");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        BarData data = new BarData(barDataSet);
+        data.setBarWidth(.9f);
+        barchart.setData(data);
+
+
+
+
+
+
+
+
+
 
         currentDailyBudget = findViewById(R.id.currentDailyBudget);
         currentWeeklyBudget = findViewById(R.id.currentWeeklyBudget);
@@ -58,10 +97,10 @@ public class   MainActivity extends AppCompatActivity {
         textbox3.setVisibility(View.GONE);
 
 
-        currentDailyBudget.setText("Remaining Daily Budget: $" + (budget_customization.getDailyBudget()));
-        currentWeeklyBudget.setText("Remaining Weekly Budget: $" + (budget_customization.getWeeklyBudget()));
-        currentMonthlyBudget.setText("Remaining Monthly Budget: $" + (budget_customization.getMonthlyBudget()));
-        currentYearlyBudget.setText("Remaining Yearly Budget: $" + (budget_customization.getYearlyBudget()));
+        currentDailyBudget.setText("Daily: $" + (budget_customization.getDailyBudget()));
+        currentWeeklyBudget.setText("Weekly: $" + (budget_customization.getWeeklyBudget()));
+        currentMonthlyBudget.setText("Monthly: $" + (budget_customization.getMonthlyBudget()));
+        currentYearlyBudget.setText("Yearly: $" + (budget_customization.getYearlyBudget()));
 
 
         customizeBudget = findViewById(R.id.customizeBudget);
@@ -86,6 +125,8 @@ public class   MainActivity extends AppCompatActivity {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
+                remainingBudget.setVisibility(View.VISIBLE);
+                barchart.setVisibility(View.VISIBLE);
                 textbox1.setVisibility(View.GONE);
                 textbox2.setVisibility(View.GONE);
                 textbox3.setVisibility(View.GONE);
@@ -129,6 +170,8 @@ public class   MainActivity extends AppCompatActivity {
         cancelNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                remainingBudget.setVisibility(View.VISIBLE);
+                barchart.setVisibility(View.VISIBLE);
                 textbox1.setVisibility(View.GONE);
                 textbox2.setVisibility(View.GONE);
                 textbox3.setVisibility(View.GONE);
@@ -153,6 +196,8 @@ public class   MainActivity extends AppCompatActivity {
         addNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                remainingBudget.setVisibility(View.GONE);
+                barchart.setVisibility(View.GONE);
                 textbox1.setVisibility(View.VISIBLE);
                 textbox2.setVisibility(View.VISIBLE);
                 textbox3.setVisibility(View.VISIBLE);
