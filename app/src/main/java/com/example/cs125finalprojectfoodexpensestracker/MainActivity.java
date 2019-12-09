@@ -13,9 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -68,12 +72,9 @@ public class   MainActivity extends AppCompatActivity {
         data.setBarWidth(.9f);
         barchart.setData(data);
 
-
-
-
-
-
-
+        String[] time = new String[]{"", "", "", "", "", ""};
+        XAxis xAxis = barchart.getXAxis();
+        xAxis.setValueFormatter(new XAxisFormat(time));
 
 
 
@@ -226,6 +227,22 @@ public class   MainActivity extends AppCompatActivity {
             }
         });
     }
+    public class XAxisFormat implements IAxisValueFormatter {
+        private String[] values;
+
+        public XAxisFormat(String[] setValues) {
+            this.values = setValues;
+        }
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            return values[(int)value];
+        }
+    }
+
+
+
+
 
     public void openBudgetCustomization() {
         Intent intent = new Intent(this, budget_customization.class);
@@ -242,3 +259,5 @@ public class   MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+
