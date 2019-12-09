@@ -14,14 +14,13 @@ public class FoodPriceAndDescription extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("dd", String.valueOf(food_expenses_list.getTest()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_price_and_description);
 
         foodPrice = findViewById(R.id.foodPrice);
-        foodPrice.setText("Food Price: $" + String.valueOf(food_expenses_list.getFoodPrice(food_expenses_list.getTest())));
+        foodPrice.setText("Food Price: $" + String.valueOf(food_expenses_list.getFoodPrice(food_expenses_list.getArrayPosition())));
         foodDescription = findViewById(R.id.foodDescription);
-        foodDescription.setText("Food Description: $" + food_expenses_list.getFoodDescription(food_expenses_list.getTest()));
+        foodDescription.setText("Food Description: $" + food_expenses_list.getFoodDescription(food_expenses_list.getArrayPosition()));
 
     }
 }

@@ -21,8 +21,7 @@ public class food_expenses_list extends AppCompatActivity {
     private static ArrayList<String> foodNames = new ArrayList<>();
     private static ArrayList<String> foodDescriptions = new ArrayList<>();
     private static ArrayList<Integer> foodPrices = new ArrayList<>();
-    private static int arrayPosition = 0;
-    private static int test;
+    private static int arrayPosition;
 
     static ListView listView;
 
@@ -40,7 +39,7 @@ public class food_expenses_list extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                test = position;
+                arrayPosition = position;
 
                 openFoodPriceAndDescription();
             }
@@ -57,11 +56,7 @@ public class food_expenses_list extends AppCompatActivity {
     }
 
     public static int getArrayPosition() {
-        return getTest();
-    }
-
-    public static int getTest() {
-        return test;
+        return arrayPosition;
     }
 
     public static int getFoodPrice(int position) {
