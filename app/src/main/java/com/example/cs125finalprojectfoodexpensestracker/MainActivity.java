@@ -44,10 +44,10 @@ public class   MainActivity extends AppCompatActivity {
         foodPrice.setVisibility(View.GONE);
 
 
-        currentDailyBudget.setText("Remaining Daily Budget: $" + budget_customization.getDailyBudget());
-        currentWeeklyBudget.setText("Remaining Weekly Budget: $" + budget_customization.getWeeklyBudget());
-        currentMonthlyBudget.setText("Remaining Monthly Budget: $" + budget_customization.getMonthlyBudget());
-        currentYearlyBudget.setText("Remaining Yearly Budget: $" + budget_customization.getYearlyBudget());
+        currentDailyBudget.setText("Remaining Daily Budget: $" + (budget_customization.getDailyBudget()));
+        currentWeeklyBudget.setText("Remaining Weekly Budget: $" + (budget_customization.getWeeklyBudget()));
+        currentMonthlyBudget.setText("Remaining Monthly Budget: $" + (budget_customization.getMonthlyBudget()));
+        currentYearlyBudget.setText("Remaining Yearly Budget: $" + (budget_customization.getYearlyBudget()));
 
 
         customizeBudget = findViewById(R.id.customizeBudget);
@@ -71,6 +71,7 @@ public class   MainActivity extends AppCompatActivity {
         submitNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 viewExpenses.setVisibility(View.VISIBLE);
                 customizeBudget.setVisibility(View.VISIBLE);
                 food.setVisibility(View.VISIBLE);
@@ -89,6 +90,11 @@ public class   MainActivity extends AppCompatActivity {
                 String name = foodName.getText().toString();
                 String desc = foodDesc.getText().toString();
                 int price = Integer.parseInt(foodPrice.getText().toString());
+                currentDailyBudget.setText("Remaining Daily Budget: $" + (budget_customization.getDailyBudget() - price));
+                currentWeeklyBudget.setText("Remaining Weekly Budget: $" + (budget_customization.getWeeklyBudget() - price));
+                currentMonthlyBudget.setText("Remaining Monthly Budget: $" + (budget_customization.getMonthlyBudget() - price));
+                currentYearlyBudget.setText("Remaining Yearly Budget: $" + (budget_customization.getYearlyBudget() - price));
+
 
                 Log.d("name", name);
                 Log.d("desc", desc);

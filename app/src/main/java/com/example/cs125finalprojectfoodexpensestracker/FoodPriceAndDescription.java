@@ -20,7 +20,7 @@ public class FoodPriceAndDescription extends AppCompatActivity {
         foodPrice = findViewById(R.id.foodPrice);
         foodPrice.setText("Food Price: $" + String.valueOf(food_expenses_list.getFoodPrice(food_expenses_list.getArrayPosition())));
         foodDescription = findViewById(R.id.foodDescription);
-        foodDescription.setText("Food Description: $" + food_expenses_list.getFoodDescription(food_expenses_list.getArrayPosition()));
+        foodDescription.setText("Food Description: " + food_expenses_list.getFoodDescription(food_expenses_list.getArrayPosition()));
 
     }
 }

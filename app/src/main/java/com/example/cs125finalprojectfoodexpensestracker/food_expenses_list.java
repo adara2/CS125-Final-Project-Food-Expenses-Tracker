@@ -22,13 +22,15 @@ public class food_expenses_list extends AppCompatActivity {
     private static ArrayList<String> foodDescriptions = new ArrayList<>();
     private static ArrayList<Integer> foodPrices = new ArrayList<>();
     private static int arrayPosition;
-
-    static ListView listView;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_expenses_list);
+
 
         listView = (ListView) findViewById(R.id.listview);
 
@@ -53,6 +55,14 @@ public class food_expenses_list extends AppCompatActivity {
         foodNames.add(addFoodName);
         foodDescriptions.add(addFoodDesc);
         foodPrices.add(addFoodPrice);
+    }
+
+    public static int getTotalExpenses() {
+        int totalExpenses = 0;
+        for (int i: foodPrices) {
+            totalExpenses = totalExpenses + i;
+        }
+        return totalExpenses;
     }
 
     public static int getArrayPosition() {
