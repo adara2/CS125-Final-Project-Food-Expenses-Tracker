@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".food_expenses_list"></activity>
+        <activity android:name=".FoodPriceAndDescription"></activity>
+        <activity android:name=".food_expenses_list" />
         <activity android:name=".restaurant" />
         <activity android:name=".budget_customization" />
         <activity android:name=".MainActivity">
